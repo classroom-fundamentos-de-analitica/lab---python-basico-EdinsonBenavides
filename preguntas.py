@@ -119,12 +119,12 @@ def pregunta_04():
     File = open("data.csv", "r").readlines()
     File = [z.replace("\n", "") for z in File]
     File = [z.split() for z in File]
-    fecha = [z[2] for z in File]
-    Month = [fecha[z][5:7] for z in range(len(fecha))]
+    Date = [z[2] for z in File]
+    Month = [Date[z][5:7] for z in range(len(Date))]
     Month = list(set(Month))
     Month.sort()
 
-    Total_M=[fecha[z][5:7] for z in range(len(fecha))]
+    Total_M=[Date[z][5:7] for z in range(len(Date))]
 
     val=[Total_M.count(z) for z in Month]
 
