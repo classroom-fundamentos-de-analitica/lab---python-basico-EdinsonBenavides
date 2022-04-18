@@ -443,7 +443,7 @@ def pregunta_12():
     Letter = list(set(Letter))
     Letter.sort()
     zeros = [ 0 for _ in Letter]
-    dic = dict(zip(Letter, zeros))
+    Dict = dict(zip(Letter, zeros))
     clave = [z[4].replace(":", ",").split(",") for z in File]
     k=0
     for i in clave:
@@ -452,7 +452,7 @@ def pregunta_12():
             suma += int(j)
         for l in Letter:
             if col1[k] == l:
-                dic[l] += int(suma)     
+                Dict[l] += int(suma)     
         k += 1    
-    return dic
+    return Dict
 
