@@ -21,7 +21,14 @@ def pregunta_01():
     214
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Col_2 = [int(z[1]) for z in File]
+    Sum_c2 = sum(Col_2)
+       
+    return Sum_c2
+    
 
 
 def pregunta_02():
@@ -39,7 +46,18 @@ def pregunta_02():
     ]
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Letter = [i[0] for i in File]
+    Letter = list(set(Letter))
+    Letter.sort()
+
+    Col_1 = [z[0] for z in File]
+    val = [Col_1.count(z) for z in Letter]
+    tuppla = list(zip(Letter, val))
+    
+    return tuppla
 
 
 def pregunta_03():
@@ -57,7 +75,23 @@ def pregunta_03():
     ]
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Letter = [i[0] for i in File]
+    Letter = list(set(Letter))
+    Letter.sort()
+    Total = []
+    
+    col12 = [(z[0], z[1]) for z in File]
+    for j in Letter:
+        suma =0
+        for i in range(len(col12)):
+            if col12[i][0] == j:
+                suma += int(col12[i][1]) 
+        elemento = (j, suma)
+        Total.append(elemento)
+    return Total
 
 
 def pregunta_04():
@@ -82,7 +116,21 @@ def pregunta_04():
     ]
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    fecha = [z[2] for z in File]
+    Month = [fecha[z][5:7] for z in range(len(fecha))]
+    Month = list(set(Month))
+    Month.sort()
+
+    Total_M=[fecha[z][5:7] for z in range(len(fecha))]
+
+    val=[Total_M.count(z) for z in Month]
+
+    registros= list(zip(Month, val))
+    
+    return registros
 
 
 def pregunta_05():
@@ -100,7 +148,29 @@ def pregunta_05():
     ]
 
     """
-    return
+
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Letter = [i[0] for i in File]
+    Letter = list(set(Letter))
+    Letter.sort()
+
+    minimo = []
+    maximo =[]
+    col12 = [(z[0], z[1]) for z in File]
+    
+    for i in Letter:
+        total=[]
+        for j in range(len(col12)):
+            if col12[j][0] == i:
+                val= col12[j][1]
+                total.append((val))
+        minimo.append(int(min(total)))
+        maximo.append(int(max(total)))
+    Total = list(zip(Letter, maximo, minimo))
+    
+    return Total
 
 
 def pregunta_06():
@@ -125,7 +195,35 @@ def pregunta_06():
     ]
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    clave = [z[4] for z in File]
+    listase = [clave[z].split(",") for z in range(len(clave))]
+    listafin=[[listase[i][j].split(":") for j in range(len(listase[i]))] for i in range(len(listase))]
+    claves = list(set([z[0:3] for z in clave]))
+    claves.sort()
+
+    a =listafin[:][0]
+    for i in range(1,len(listafin)):
+        b =listafin[:][i]
+        a.extend(b)
+    
+    
+    minimo = []
+    maximo =[]
+    
+    for i in range(len(claves)):
+        total=[]
+        for j in range(len(a)):
+            if a[j][0] == claves[i]:
+                val= a[j][1]
+                total.append((int(val)))
+        minimo.append(min(total))
+        maximo.append(max(total))
+    total = list(zip(claves, minimo, maximo))
+    
+    return total
 
 
 def pregunta_07():
@@ -149,7 +247,22 @@ def pregunta_07():
     ]
 
     """
-    return
+    
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    col2= [(int(z[1]), z[0]) for z in File]
+    num = list(set([int(z[1]) for z in File]))
+    num.sort()
+
+    letraf =[]
+    for i in num:
+        letra= [col2[j][1] for j in range(len(col2)) if i == col2[j][0]]
+        letraf.append(letra)
+
+    Total = list(zip(num, letraf))   
+
+    return Total
 
 
 def pregunta_08():
@@ -174,7 +287,22 @@ def pregunta_08():
     ]
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    col2= [(int(z[1]), z[0]) for z in File]
+    num = list(set([int(z[1]) for z in File]))
+    num.sort()
+
+    letraf =[]
+    for i in num:
+        letra= [col2[j][1] for j in range(len(col2)) if i == col2[j][0]]
+        a=list(set(letra))
+        a.sort()
+        letraf.append(a)
+
+    Total = list(zip(num, letraf))
+    return Total
 
 
 def pregunta_09():
@@ -197,7 +325,31 @@ def pregunta_09():
     }
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    clave = [z[4] for z in File]
+    listase = [clave[z].split(",") for z in range(len(clave))]
+    listafin=[[listase[i][j].split(":") for j in range(len(listase[i]))] for i in range(len(listase))]
+   
+    a =listafin[:][0]
+    for i in range(1,len(listafin)):
+        b =listafin[:][i]
+        a.extend(b)
+    
+    claves_all=[a[i][0] for i in range(len(a))]
+    cl=list(set([a[i][0] for i in range(len(a))]))
+
+    val=[claves_all.count(z) for z in cl]
+
+    claves={}
+    for i in range(len(val)):
+        n=dict({cl[i]:val[i]})
+        claves.update(n)
+
+    claves =dict(sorted(claves.items())) 
+    
+    return claves
 
 
 def pregunta_10():
@@ -218,8 +370,15 @@ def pregunta_10():
 
 
     """
-    return
-
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Col_1= [z[0] for z in File] # col1 = [ col1[i][0] for i in range(len(archivo))]
+    col3= [len(z[3].split(",")) for z in File]
+    col4= [len(z[4].split(",")) for z in File]
+    total = [(Col_1[i], col3[i], col4[i]) for i in range(len(Col_1))]
+    
+    return total
 
 def pregunta_11():
     """
@@ -239,7 +398,26 @@ def pregunta_11():
 
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    col24= [(z[1], z[3].split(",")) for z in File] 
+    
+    col4= [z[3].split(",") for z in File]
+    a =col4[:][0]
+    for i in range(1,len(col4)):
+        b =col4[:][i]
+        a.extend(b)
+    Letters =sorted(list(set(a)))
+    zeros = [ 0 for _ in Letters]
+    dic = dict(zip(Letters, zeros))
+       
+    for i in range(len(col24)):
+        for j in col24[i][1]:
+            for l in Letters: 
+                if j == l:
+                    dic[l]= dic[l]+int(col24[i][0])
+    return dic
 
 
 def pregunta_12():
@@ -257,4 +435,24 @@ def pregunta_12():
     }
 
     """
-    return
+    File = open("data.csv", "r").readlines()
+    File = [z.replace("\n", "") for z in File]
+    File = [z.split() for z in File]
+    Letter = [z[0] for z in File]
+    col1 = [z[0] for z in File]
+    Letter = list(set(Letter))
+    Letter.sort()
+    zeros = [ 0 for _ in Letter]
+    dic = dict(zip(Letter, zeros))
+    clave = [z[4].replace(":", ",").split(",") for z in File]
+    k=0
+    for i in clave:
+        suma = 0
+        for j in i[1::2]:
+            suma += int(j)
+        for l in Letter:
+            if col1[k] == l:
+                dic[l] += int(suma)     
+        k += 1    
+    return dic
+
